@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Siddharth | Futuristic Resume</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at top left, #0f2027, #203a43, #2c5364);
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #1f4037, #99f2c8);
+      color: #fff;
+    }
+    header h1 {
+      font-size: 3em;
+      margin: 0;
+      text-shadow: 0 0 15px #00ffcc;
+    }
+    header p {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,255,204,0.2);
+      transition: transform 0.3s ease;
+    }
+    section:hover {
+      transform: scale(1.02);
+    }
+    h2 {
+      border-bottom: 2px solid #00ffcc;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      color: #00ffcc;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      margin-bottom: 12px;
+      padding: 10px;
+      background: rgba(0,0,0,0.3);
+      border-left: 4px solid #00ffcc;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    .skill {
+      background: rgba(0,0,0,0.4);
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,255,204,0.3);
+    }
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+    .glow-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      color: #00ffcc;
+      border: 2px solid #00ffcc;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .glow-btn:hover {
+      background: #00ffcc;
+      color: #000;
+      box-shadow: 0 0 20px #00ffcc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Siddharth</h1>
+    <p>Director – Product Management | AI & Digital Transformation</p>
+    <a href="mailto:siddharth@example.com" class="glow-btn">Contact Me</a>
+  </header>
+
+  <section>
+    <h2>Summary</h2>
+    <p>Impact-driven product leader with 6+ years of experience in BFSI, AI, and hospitality. Skilled in 0→1 product launches, cross-functional leadership, and driving measurable outcomes. MBA in Business Analytics, CSPO certified, pursuing AWS Solutions Architect.</p>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+    <ul>
+      <li><strong>Director – Product Management, Homestay Venture</strong><br>
+        Built and scaled hospitality platform; refined branding and guest experience strategy.</li>
+      <li><strong>Product Manager – Gen AI Products, EXL</strong><br>
+        Launched 0→1 Generative AI MVP using transformer NLP, reducing FP&A turnaround time by 70%.</li>
+      <li><strong>Project Manager – Digital Finance Suite (US Client)</strong><br>
+        Led Agile transformation for enterprise FP&A, delivering $1.5M impact.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill">Product Management</div>
+      <div class="skill">Generative AI</div>
+      <div class="skill">Prompt Engineering</div>
+      <div class="skill">Agile Program Management</div>
+      <div class="skill">Python Basics</div>
+      <div class="skill">AWS (in progress)</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <ul>
+      <li>MBA in Business Analytics – SCMHRD Pune</li>
+      <li>B.Tech Mechanical Engineering – IFHE Hyderabad</li>
+      <li>CSPO Certification</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Interests</h2>
+    <ul>
+      <li>AI-driven product innovation</li>
+      <li>Procurement automation</li>
+      <li>Hospitality and guest experience</li>
+      <li>Creative marketing and brand-building</li>
+    </ul>
+  </section>
+
+  <footer>
+    © 2026 Siddharth | Futuristic Resume
+  </footer>
+
+  <script>
+    // Simple interactive glow effect on hover for sections
+    document.querySelectorAll('section').forEach(sec => {
+      sec.addEventListener('mouseenter', () => {
+        sec.style.boxShadow = '0 0 30px rgba(0,255,204,0.6)';
+      });
+      sec.addEventListener('mouseleave', () => {
+        sec.style.boxShadow = '0 0 20px rgba(0,255,204,0.2)';
+      });
+    });
+  </script>
+</body>
+</html>

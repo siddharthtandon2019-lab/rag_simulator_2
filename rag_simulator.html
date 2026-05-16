@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RAG Simulator</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f2027;
+      background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+      color: #e0e0e0;
+    }
+    header {
+      text-align: center;
+      padding: 40px;
+      background: #1f4037;
+      color: #00ffcc;
+      text-shadow: 0 0 10px #00ffcc;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    .step {
+      margin: 30px 0;
+      padding: 20px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      box-shadow: 0 0 15px rgba(0,255,204,0.2);
+      transition: all 0.5s ease;
+      opacity: 0.6;
+    }
+    .step.active {
+      opacity: 1;
+      transform: scale(1.02);
+      box-shadow: 0 0 25px rgba(0,255,204,0.6);
+    }
+    h2 {
+      color: #00ffcc;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 12px 24px;
+      background: transparent;
+      border: 2px solid #00ffcc;
+      border-radius: 30px;
+      color: #00ffcc;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background: #00ffcc;
+      color: #000;
+      box-shadow: 0 0 20px #00ffcc;
+    }
+    .output {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(0,0,0,0.4);
+      border-radius: 8px;
+      font-style: italic;
+      color: #aaffee;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>RAG Simulator</h1>
+    <p>Retrieval • Augment • Generate</p>
+  </header>
+
+  <div class="container">
+    <div id="step1" class="step">
+      <h2>Retrieve</h2>
+      <p>Collect and clean data → chunk it → convert chunks into vector embeddings.</p>
+      <div class="output" id="output1"></div>
+    </div>
+
+    <div id="step2" class="step">
+      <h2>Augment</h2>
+      <p>Refine user query → convert query into embeddings → perform semantic search.</p>
+      <div class="output" id="output2"></div>
+    </div>
+
+    <div id="step3" class="step">
+      <h2>Generate</h2>
+      <p>Use retrieved chunks + model reasoning → produce final answer.</p>
+      <div class="output" id="output3"></div>
+    </div>
+
+    <button id="simulateBtn">Run Simulation</button>
+  </div>
+
+  <script>
+    const steps = [
+      {
+        id: "step1",
+        output: "Data cleaned, chunked, and embedded into vectors."
+      },
+      {
+        id: "step2",
+        output: "Query refined, embedded, semantic search finds relevant chunks."
+      },
+      {
+        id: "step3",
+        output: "Model generates coherent answer using retrieved context."
+      }
+    ];
+
+    document.getElementById("simulateBtn").addEventListener("click", () => {
+      steps.forEach((s, i) => {
+        setTimeout(() => {
+          document.querySelectorAll(".step").forEach(el => el.classList.remove("active"));
+          const stepEl = document.getElementById(s.id);
+          stepEl.classList.add("active");
+          document.getElementById("output" + (i+1)).innerText = s.output;
+        }, i * 2000);
+      });
+    });
+  </script>
+</body>
+</html>

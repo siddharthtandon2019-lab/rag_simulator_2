@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Market Song | Digital Maverick</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto+Mono:wght@300;400&display=swap');
+        
+        :root {
+            --neon-blue: #00f0ff;
+            --neon-purple: #c300ff;
+            --dark-bg: #0a0a1f;
+            --card-bg: rgba(15, 23, 42, 0.85);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background: linear-gradient(135deg, #0a0a1f 0%, #1a0033 100%);
+            color: #e0e0ff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Animated background grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--neon-blue) 1px, transparent 1px),
+                linear-gradient(90deg, var(--neon-blue) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.08;
+            z-index: -1;
+            animation: gridMove 40s linear infinite;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            position: relative;
+        }
+        
+        .holo-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px var(--neon-blue),
+                        0 0 60px var(--neon-purple);
+            animation: glow 2s ease-in-out infinite alternate;
+            letter-spacing: 4px;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 20px var(--neon-blue); }
+            to { text-shadow: 0 0 40px var(--neon-blue), 0 0 70px var(--neon-purple); }
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            color: #a0a0ff;
+            margin-top: 10px;
+            letter-spacing: 3px;
+        }
+        
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 50%,
+                rgba(0, 240, 255, 0.15) 50%
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            animation: scan 4s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        
+        .profile-section {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        
+        .avatar {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 4px solid var(--neon-blue);
+            box-shadow: 0 0 40px var(--neon-blue),
+                        inset 0 0 30px rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .avatar::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            animation: hologram 8s linear infinite;
+        }
+        
+        .content {
+            flex: 1;
+        }
+        
+        section {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+        }
+        
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-blue);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--neon-blue), transparent);
+        }
+        
+        .timeline {
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--neon-purple), var(--neon-blue));
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            background: var(--dark-bg);
+            border: 3px solid var(--neon-purple);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .role {
+            font-weight: bold;
+            color: white;
+            font-size: 1.1rem;
+        }
+        
+        .company {
+            color: var(--neon-purple);
+        }
+        
+        .date {
+            font-size: 0.9rem;
+            color: #8899cc;
+            margin-bottom: 8px;
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        li::before {
+            content: '▶';
+            color: var(--neon-blue);
+            position: absolute;
+            left: -20px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+        }
+        
+        .skill-tag {
+            background: rgba(195, 0, 255, 0.15);
+            border: 1px solid var(--neon-purple);
+            padding: 12px 18px;
+            border-radius: 30px;
+            text-align: center;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        .skill-tag:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 0 20px var(--neon-purple);
+            background: rgba(195, 0, 255, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6677aa;
+            font-size: 0.9rem;
+        }
+        
+        .neon-button {
+            display: inline-block;
+            padding: 12px 32px;
+            margin: 20px 10px;
+            background: transparent;
+            border: 2px solid var(--neon-blue);
+            color: var(--neon-blue);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s;
+            text-decoration: none;
+        }
+        
+        .neon-button:hover {
+            background: var(--neon-blue);
+            color: #0a0a1f;
+            box-shadow: 0 0 25px var(--neon-blue);
+        }
+        
+        /* Particle effect */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <header>
+            <div class="scanline"></div>
+            <h1 class="holo-name">SHARE MARKET SONG</h1>
+            <p class="tagline">FREEDOM ARCHITECT • ANTI-TOXICITY ADVOCATE • DIGITAL CREATOR</p>
+            <p style="margin-top: 15px; color: #8899cc;">India • Independent Operator • Building Life on My Own Terms</p>
+            
+            <div style="margin-top: 30px;">
+                <a href="#" class="neon-button">CONNECT ON X</a>
+                <a href="#" class="neon-button">VIEW PORTFOLIO</a>
+            </div>
+        </header>
+        
+        <div class="profile-section">
+            <div class="avatar">
+                <!-- Placeholder avatar - replace src with actual image URL if available -->
+                <img src="https://pbs.twimg.com/profile_images/1913486869834182656/wzQD1wAf.jpg" 
+                     alt="Share Market Song" 
+                     style="width:100%; height:100%; object-fit: cover; border-radius: 50%;">
+            </div>
+            
+            <div class="content">
+                <h2 style="margin-bottom: 15px;">MISSION PROTOCOL</h2>
+                <p style="font-size: 1.1rem; color: #ccd0ff;">
+                    Escaped the corporate matrix. Rejected toxic hierarchies. Now empowering individuals to reclaim their time, energy, and financial independence. 
+                    Educational content creator focused on mindset, markets, and meaningful freedom.
+                </p>
+                
+                <div style="margin-top: 25px; display: flex; gap: 30px; flex-wrap: wrap;">
+                    <div>
+                        <div style="color: var(--neon-purple); font-size: 0.9rem;">CURRENT STATUS</div>
+                        <div style="font-size: 1.4rem; font-weight: bold;">Independent Operator</div>
+                    </div>
+                    <div>
+                        <div style="color: var(--neon-purple); font-size: 0.9rem;">BASE</div>
+                        <div style="font-size: 1.4rem; font-weight: bold;">India</div>
+                    </div>
+                    <div>
+                        <div style="color: var(--neon-purple); font-size: 0.9rem;">FOCUS AREAS</div>
+                        <div style="font-size: 1.1rem;">Financial Literacy • Mindset Engineering • Anti-Hustle Culture</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <section>
+            <h2>EXPERIENCE LOG</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="date">2024 – Present</div>
+                    <div class="role">Independent Content Creator &amp; Educator</div>
+                    <div class="company">@sharemarketsong</div>
+                    <ul>
+                        <li>Building authentic community around freedom from toxic work culture</li>
+                        <li>Creating educational content on stock markets, personal finance &amp; mindset</li>
+                        <li>Helping individuals design life on their own terms</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="date">Previous Chapter</div>
+                    <div class="role">Corporate Professional</div>
+                    <div class="company">Traditional Employment Matrix</div>
+                    <ul>
+                        <li>Successfully identified and exited toxic work environments</li>
+                        <li>Gained deep insights into corporate dynamics and human capital</li>
+                        <li>Developed resilience and strategic thinking under pressure</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>CORE PROTOCOLS (SKILLS)</h2>
+            <div class="skills-grid">
+                <div class="skill-tag">Stock Market Analysis</div>
+                <div class="skill-tag">Financial Education</div>
+                <div class="skill-tag">Digital Content Strategy</div>
+                <div class="skill-tag">Community Building</div>
+                <div class="skill-tag">Mindset Coaching</div>
+                <div class="skill-tag">Personal Branding</div>
+                <div class="skill-tag">Anti-Toxicity Advocacy</div>
+                <div class="skill-tag">Independent Operations</div>
+                <div class="skill-tag">Trend Observation</div>
+                <div class="skill-tag">Motivational Systems</div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>ACHIEVEMENTS &amp; SIGNALS</h2>
+            <ul>
+                <li>Built growing platform focused on genuine personal development and financial awareness</li>
+                <li>Successfully transitioned from traditional employment to sovereign creator economy</li>
+                <li>Consistently sharing value-driven educational content</li>
+                <li>Advocating for healthier work-life paradigms in India and beyond</li>
+            </ul>
+        </section>
+        
+        <footer>
+            <p>Designed in the Year 2026 • Powered by Vision &amp; Neon</p>
+            <p style="margin-top: 10px;">
+                <a href="https://x.com/sharemarketsong" target="_blank" style="color: var(--neon-blue);">X / @sharemarketsong</a> • 
+                Open to meaningful collaborations and conversations
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        // Canvas particles for futuristic feel
+        function createParticles() {
+            const canvas = document.createElement('canvas');
+            canvas.style.position = 'fixed';
+            canvas.style.top = '0';
+            canvas.style.left = '0';
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
+            canvas.style.zIndex = '-1';
+            canvas.style.pointerEvents = 'none';
+            document.getElementById('particles').appendChild(canvas);
+            
+            const ctx = canvas.getContext('2d');
+            
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+            
+            let particles = [];
+            
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2.5 + 0.5;
+                    this.speedX = Math.random() * 0.5 - 0.25;
+                    this.speedY = Math.random() * 0.5 - 0.25;
+                    this.opacity = Math.random() * 0.5 + 0.2;
+                }
+                
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    
+                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                }
+                
+                draw() {
+                    ctx.fillStyle = `rgba(0, 240, 255, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            
+            for (let i = 0; i < 120; i++) {
+                particles.push(new Particle());
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                }
+                
+                // Connect nearby particles
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 120) {
+                            ctx.strokeStyle = `rgba(195, 0, 255, ${0.15 * (1 - distance/120)})`;
+                            ctx.lineWidth = 0.8;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
+        
+        // Initialize everything
+        window.onload = function() {
+            createParticles();
+            
+            // Add subtle hover effects to sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.addEventListener('mousemove', (e) => {
+                    const rect = section.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    section.style.boxShadow = `
+                        0 0 30px rgba(0, 240, 255, 0.3),
+                        inset ${x - rect.width/2}px ${y - rect.height/2}px 40px rgba(255,255,255,0.05)
+                    `;
+                });
+                
+                section.addEventListener('mouseleave', () => {
+                    section.style.boxShadow = '';
+                });
+            });
+            
+            console.log('%c🚀 Futuristic Resume Loaded Successfully', 'color: #00f0ff; font-family: monospace; font-size: 14px;');
+        };
+    </script>
+</body>
+</html>
